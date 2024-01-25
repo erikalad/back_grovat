@@ -1,67 +1,57 @@
 const express = require('express');
-const { Cliente, Funcionalidades } = require('../../db');
-const { Op } = require('sequelize');
+const { Cliente, Funcionalidades } = require('../../db'); // Ajusta la ruta según tu estructura de archivos
 
 const router = express.Router();
 
-// Ruta para actualizar un cliente (PATCH)
-router.patch('/:idCliente', async (req, res) => {
+// Ruta para crear un cliente
+router.post('/', async (req, res) => {
   try {
-    // Obtener el ID del cliente desde los parámetros de la ruta
-    const { idCliente } = req.params;
-
     // Obtener datos del cuerpo de la solicitud
-    const { nombre, apellido, email, fechaVencimiento, plan, activo } = req.body;
+    const { nombre, apellido, email, fechaAlta, fechaVencimiento, plan, activo } = req.body;
 
-    // Verificar si el cliente con el ID proporcionado existe
-    const clienteExistente = await Cliente.findByPk(idCliente);
-
-    if (!clienteExistente) {
-      return res.status(404).json({ mensaje: 'No se encontró el cliente con el ID proporcionado.' });
-    }
-
-    // Verificar si el nuevo email ya existe en otro cliente
-    const clientesConNuevoEmail = await Cliente.findAll({
+    // Verificar si ya existe un cliente con el mismo correo electrónico
+    const clienteExistente = await Cliente.findOne({
       where: {
-        [Op.and]: [
-          { id_cliente: { [Op.not]: idCliente } }, // Excluir el cliente actual
-          { email }, // Verificar nuevo email
-        ],
+        email: email,
       },
     });
 
-    if (clientesConNuevoEmail.length > 0) {
-      return res.status(400).json({ mensaje: 'El nuevo email ya está registrado en otro cliente.' });
+    // Si el cliente ya existe, enviar un mensaje de error
+    if (clienteExistente) {
+      return res.status(400).json({ mensaje: 'El correo electrónico ya está registrado' });
     }
 
-    // Actualizar los campos específicos del cliente
-    await clienteExistente.update({
+    // Crear el cliente en la base de datos
+    const nuevoCliente = await Cliente.create({
       nombre,
       apellido,
       email,
+      fechaAlta,
       fechaVencimiento,
       plan,
       activo,
     });
 
-    // Si el plan es "empresarial" y el cliente no tenía ese plan previamente, crea una nueva funcionalidad asociada al cliente
-    if (plan === 'empresarial' && clienteExistente.plan !== 'empresarial') {
-      await Funcionalidades.create({
-        clienteId: idCliente,
+    // Si el plan es "empresarial", crea una nueva funcionalidad asociada al cliente
+    if (plan === 'empresarial') {
+      const nuevaFuncionalidad = await Funcionalidades.create({
+        clienteId: nuevoCliente.id_cliente,
         gratis: true,
+        // Agrega las fechas según tus necesidades
         fechaSolicitud: null,
         fechaInicio: null,
         fechaFin: null,
       });
     }
 
-    // Enviar respuesta con el cliente actualizado
-    res.status(200).json({ mensaje: 'Cliente actualizado con éxito', cliente: clienteExistente });
+    // Enviar respuesta con el nuevo cliente creado
+    res.status(201).json({ mensaje: 'Cliente creado con éxito', cliente: nuevoCliente });
   } catch (error) {
     // Manejar errores y enviar respuesta al cliente
-    console.error('Error al actualizar cliente:', error);
-    res.status(500).json({ mensaje: 'Error al actualizar cliente', error: error.message });
+    console.error('Error al crear cliente:', error);
+    res.status(500).json({ mensaje: 'Error al crear cliente', error: error.message });
   }
 });
 
 module.exports = router;
+

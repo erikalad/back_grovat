@@ -54,20 +54,53 @@
 //   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
 // };
 
+
+
+//local
+// const DB_USER= 'postgres'
+// const DB_PASSWORD= 'Prbm2244'
+// const DB_HOST = 'localhost';
+// const DB_PORT = 5432;
+// const DB_NAME = 'meicanalitycs';
+
+// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {
+//   logging: false,
+//   native: false,
+// });
+
 const { Sequelize, Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
-const DB_USER= 'postgres'
-const DB_PASSWORD= 'Prbm2244'
-const DB_HOST = 'localhost';
+//render
+const DB_USER = 'meicanalitycs_user';
+const DB_PASSWORD = 'kjDc81vIuc5zfiD14DPSrHMvv80Ex2wg';
+const DB_HOST = 'dpg-cmopd62cn0vc73civvug-a.oregon-postgres.render.com';
 const DB_PORT = 5432;
 const DB_NAME = 'meicanalitycs';
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {
+const sequelize = new Sequelize(`postgres://meicanalitycs_user:kjDc81vIuc5zfiD14DPSrHMvv80Ex2wg@dpg-cmopd62cn0vc73civvug-a.oregon-postgres.render.com/meicanalitycs`, {
+  
   logging: false,
   native: false,
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+  // pool: {
+  //   max: 5,
+  //   min: 0,
+  //   acquire: 30000,
+  //   idle: 10000,
+  // },
 });
+
+
+
+
 
 
 const basename = path.basename(__filename);
@@ -113,6 +146,7 @@ Cliente.hasMany(Customizaciones, { foreignKey: 'clienteId' });
 // Ejemplo de cómo podrías agregar más relaciones:
 // Usuario.belongsToMany(OtroModelo, { through: 'nombre_tabla_intermedia' });
 // OtroModelo.hasMany(Algo, { foreignKey: 'algoId' });
+
 
 module.exports = {
   ...sequelize.models,
