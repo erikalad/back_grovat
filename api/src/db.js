@@ -72,13 +72,6 @@ const { Sequelize, Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
-//render
-const DB_USER = 'meicanalitycs_user';
-const DB_PASSWORD = 'kjDc81vIuc5zfiD14DPSrHMvv80Ex2wg';
-const DB_HOST = 'dpg-cmopd62cn0vc73civvug-a.oregon-postgres.render.com';
-const DB_PORT = 5432;
-const DB_NAME = 'meicanalitycs';
-
 const sequelize = new Sequelize(`postgres://meicanalitycs_user:kjDc81vIuc5zfiD14DPSrHMvv80Ex2wg@dpg-cmopd62cn0vc73civvug-a/meicanalitycs`, {
   
   logging: false,
