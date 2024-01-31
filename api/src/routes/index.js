@@ -32,7 +32,7 @@ const postClient = require("../controllers/Post/PostCliente.js")
 const postUser = require("../controllers/Post/PostUsuario.js")
 const postCustomizaciones = require("../controllers/Post/PostCustomizaciones.js")
 const postFuncionalidades = require("../controllers/Post/PostFuncionalidades.js")
-// const postProducts = require("../controllers/Post/PostProducts")
+const postLanding = require("../controllers/Post/PostLanding.js")
 // const postUsers = require("../controllers/Post/PostUsers")
 
 // //REQUIRE DELETE
@@ -66,7 +66,7 @@ router.use("/cliente", postClient)
 router.use("/usuario", postUser)
 router.use("/customizaciones", postCustomizaciones)
 router.use("/funcionalidades", postFuncionalidades)
-// router.use("/procedure", postProcedure)
+router.use("/landing", postLanding)
 // router.use("/cart", postCart)
  
 // //PATCH
