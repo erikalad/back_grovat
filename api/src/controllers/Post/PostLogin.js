@@ -16,10 +16,9 @@ router.post('/', async (req, res) => {
     });
     console.log(user)
     // Verificar si el usuario existe y si la contraseña es correcta
-    if (!user || !bcrypt.compareSync(contraseña, user.contraseña)) {
+    if (!user || user.contraseña !== contraseña) {
       return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
     }
-
     // Actualizar la propiedad logueado a true
     await Usuario.update({ logueado: true }, { where: { id_usuario: user.id_usuario } });
 
