@@ -8,13 +8,11 @@ const router = express.Router();
 // Método para autenticar un usuario
 router.post('/', async (req, res) => {
   const { usuario, contraseña } = req.body;
-  console.log(usuario, contraseña)
   try {
     // Buscar el usuario en la base de datos
     const user = await Usuario.findOne({
       where: { usuario },
     });
-    console.log(user)
     // Verificar si el usuario existe y si la contraseña es correcta
     if (!user || user.contraseña !== contraseña) {
       return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
@@ -25,9 +23,13 @@ router.post('/', async (req, res) => {
     // Obtener el id_cliente asociado al usuario
     const { clienteId } = user;
     // Buscar el cliente en la base de datos utilizando el id_cliente
-    const cliente = await Cliente.findByPk(clienteId);
-    console.log(cliente)
-
+    const cliente = await Cliente.findByPk(clienteId, {
+      include: [
+        { model: Usuario },
+        { model: Customizaciones },
+        { model: Funcionalidades },
+      ],
+    });
     // Verificar si se encontró el cliente
     if (!cliente) {
       return res.status(404).json({ error: 'Cliente no encontrado' });
