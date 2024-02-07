@@ -5,7 +5,6 @@ const { Router } = require('express');
 // //REQUIRE GET
 const getClientes = require("../controllers/Get/GetAllClients.js")
 const getUsers = require("../controllers/Get/GetAllUsers.js")
-const login = require("../controllers/Get/GetLogin.js")
 // const getUsers = require("../controllers/Get/GetUsers")
 // const getAllCarts = require("../controllers/Get/GetAllCarts")
 
@@ -33,6 +32,8 @@ const postUser = require("../controllers/Post/PostUsuario.js")
 const postCustomizaciones = require("../controllers/Post/PostCustomizaciones.js")
 const postFuncionalidades = require("../controllers/Post/PostFuncionalidades.js")
 const postLanding = require("../controllers/Post/PostLanding.js")
+const login = require("../controllers/Post/PostLogin.js")
+
 // const postUsers = require("../controllers/Post/PostUsers")
 
 // //REQUIRE DELETE
@@ -53,7 +54,6 @@ const router = Router();
 // //GET
 router.use("/clientes", getClientes)
 router.use("/usuarios", getUsers)
-router.use("/login", login)
 // router.use("/orders", getOrders)
 // router.use("/procedures", getProcedure)
 // router.use("/carts", getAllCarts)
@@ -67,6 +67,7 @@ router.use("/usuario", postUser)
 router.use("/customizaciones", postCustomizaciones)
 router.use("/funcionalidades", postFuncionalidades)
 router.use("/landing", postLanding)
+router.use("/login", login)
 // router.use("/cart", postCart)
  
 // //PATCH

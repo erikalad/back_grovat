@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 
 const router = express.Router();
 // Método para autenticar un usuario
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
   const { usuario, contraseña } = req.body;
 
   try {
