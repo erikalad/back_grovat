@@ -1,5 +1,5 @@
 // En tu controlador de autenticación
-
+const express = require('express');
 const { Usuario, Cliente } = require('../../db');
 const bcrypt = require('bcrypt');
 
