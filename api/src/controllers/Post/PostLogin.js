@@ -1,4 +1,3 @@
-// En tu controlador de autenticación
 const express = require('express');
 const { Cliente, Usuario, Customizaciones, Funcionalidades } = require('../../db'); 
 
@@ -16,6 +15,12 @@ router.post('/', async (req, res) => {
     if (!user || user.contraseña !== contraseña) {
       return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
     }
+
+    // Verificar si el usuario ya está logueado en otro dispositivo
+    if (user.logueado) {
+      return res.status(401).json({ error: 'El usuario ya está logueado en otro dispositivo' });
+    }
+
     // Actualizar la propiedad logueado a true
     await Usuario.update({ logueado: true }, { where: { id_usuario: user.id_usuario } });
 
