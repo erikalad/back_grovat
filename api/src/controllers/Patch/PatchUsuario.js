@@ -10,7 +10,7 @@ router.patch('/:idUsuario', async (req, res) => {
     const { idUsuario } = req.params;
 
     // Obtener datos del cuerpo de la solicitud
-    const { nombre, apellido, email, usuario, contraseña, activo, type } = req.body;
+    const { nombre, apellido, email, usuario, contraseña, activo, type, loguado } = req.body;
 
     // Verificar si el usuario con el ID proporcionado existe
     const usuarioExistente = await Usuario.findByPk(idUsuario);
@@ -42,6 +42,7 @@ router.patch('/:idUsuario', async (req, res) => {
       contraseña,
       activo,
       type,
+      loguado
     });
 
     // Enviar respuesta con el usuario actualizado
