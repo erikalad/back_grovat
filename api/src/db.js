@@ -114,18 +114,18 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // Sincroniza y recrea las tablas
-async function recreateTables() {
-  try {
-    await sequelize.sync({ force: true });
-    console.log('Tablas recreadas con éxito.');
-  } catch (error) {
-    console.error('Error al recrear las tablas:', error);
-  } finally {
-    // Cierra la conexión después de realizar las operaciones
-    await sequelize.close();
-  }
-}
-recreateTables()
+// async function recreateTables() {
+//   try {
+//     await sequelize.sync({ force: true });
+//     console.log('Tablas recreadas con éxito.');
+//   } catch (error) {
+//     console.error('Error al recrear las tablas:', error);
+//   } finally {
+//     // Cierra la conexión después de realizar las operaciones
+//     await sequelize.close();
+//   }
+// }
+// recreateTables()
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
