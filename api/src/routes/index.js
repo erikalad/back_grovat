@@ -5,7 +5,7 @@ const { Router } = require('express');
 // //REQUIRE GET
 const getClientes = require("../controllers/Get/GetAllClients.js")
 const getUsers = require("../controllers/Get/GetAllUsers.js")
-// const getUsers = require("../controllers/Get/GetUsers")
+const getFuncionalidades = require("../controllers/Get/GetAllFuncionalidades.js")
 // const getAllCarts = require("../controllers/Get/GetAllCarts")
 
 
@@ -54,7 +54,7 @@ const router = Router();
 // //GET
 router.use("/clientes", getClientes)
 router.use("/usuarios", getUsers)
-// router.use("/orders", getOrders)
+router.use("/funcionalidades", getFuncionalidades)
 // router.use("/procedures", getProcedure)
 // router.use("/carts", getAllCarts)
 
