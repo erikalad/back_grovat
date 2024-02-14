@@ -10,6 +10,14 @@ module.exports = (sequelize) => {
         allowNull: false,
         primaryKey : true
     },
+    nombre: {
+        type:DataTypes.STRING,
+        allowNull: true
+    },
+    prioridad: {
+        type: DataTypes.ENUM('baja', 'media', 'alta'),
+        allowNull: true
+    },
     fechaSolicitud: {
         type: DataTypes.DATE,
         allowNull: true

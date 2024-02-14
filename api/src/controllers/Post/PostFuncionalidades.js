@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/', async (req, res) => {
   try {
     // Obtener datos del cuerpo de la solicitud
-    const { clienteId, fechaSolicitud, descripcion } = req.body;
+    const { clienteId, fechaSolicitud, descripcion, nombre, prioridad } = req.body;
 
     // Verificar si el clienteId existe y el plan del cliente es "startup" o "empresarial"
     const cliente = await Cliente.findOne({
@@ -29,7 +29,9 @@ router.post('/', async (req, res) => {
       fechaSolicitud,
       fechaInicio: null,
       fechaFin: null,
-      descripcion
+      descripcion,
+      nombre, 
+      prioridad
     });
 
     // Enviar respuesta con la nueva funcionalidad creada
