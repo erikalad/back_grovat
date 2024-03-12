@@ -37,7 +37,7 @@ const login = require("../controllers/Post/PostLogin.js")
 // const postUsers = require("../controllers/Post/PostUsers")
 
 // //REQUIRE DELETE
-// const deleteCart = require("../controllers/Delete/DeleteCart")
+const deleteCustomizaciones = require("../controllers/Delete/DeleteCustomizaciones.js")
 // const deleteConsultation = require("../controllers/Delete/DeleteConsultation")
 // const deleteOrders = require("../controllers/Delete/DeleteOrders")
 // const deleteProcedure = require("../controllers/Delete/DeleteProcedure")
@@ -79,7 +79,7 @@ router.use("/funcionalidades", patchFuncionalidades)
 // router.use("/cart", putCart)
 
 // //DELETE
-// router.use("/users", deleteUsers)
+router.use("/customizaciones", deleteCustomizaciones)
 // router.use("/products", deleteProducts)
 // router.use("/consultation", deleteConsultation)
 // router.use("/orders", deleteOrders)
