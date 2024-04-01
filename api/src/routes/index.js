@@ -33,6 +33,7 @@ const postCustomizaciones = require("../controllers/Post/PostCustomizaciones.js"
 const postFuncionalidades = require("../controllers/Post/PostFuncionalidades.js")
 const postLanding = require("../controllers/Post/PostLanding.js")
 const login = require("../controllers/Post/PostLogin.js")
+const mensajes = require("../controllers/Post/PostMensajes.js")
 
 // const postUsers = require("../controllers/Post/PostUsers")
 
@@ -68,7 +69,7 @@ router.use("/customizaciones", postCustomizaciones)
 router.use("/funcionalidades", postFuncionalidades)
 router.use("/landing", postLanding)
 router.use("/login", login)
-// router.use("/cart", postCart)
+router.use("/mensaje", mensajes)
  
 // //PATCH
 router.use("/usuario", patchUsuario)

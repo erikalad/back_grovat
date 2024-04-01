@@ -72,7 +72,8 @@ const { Sequelize, Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
-const sequelize = new Sequelize(`postgres://meicanalitycs_user:kjDc81vIuc5zfiD14DPSrHMvv80Ex2wg@dpg-cmopd62cn0vc73civvug-a/meicanalitycs`, {
+// const sequelize = new Sequelize(`postgres://meicanalitycs_user:kjDc81vIuc5zfiD14DPSrHMvv80Ex2wg@dpg-cmopd62cn0vc73civvug-a/meicanalitycs`, {
+const sequelize = new Sequelize(`postgres://meicanalitycs_user:kjDc81vIuc5zfiD14DPSrHMvv80Ex2wg@dpg-cmopd62cn0vc73civvug-a.oregon-postgres.render.com/meicanalitycs`, {
   
   logging: false,
   native: false,
