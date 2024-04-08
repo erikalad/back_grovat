@@ -48,8 +48,9 @@ router.post('/', (req, res) => {
 
         // Función para verificar si un mensaje contiene "https://calendly"
         const contieneCalendly = (mensaje) => {
-            return mensaje.CONTENT && mensaje.CONTENT.toLowerCase().includes("https://calendly");
+            return typeof mensaje.CONTENT === 'string' && mensaje.CONTENT.toLowerCase().includes("https://calendly");
         };
+        
 
         mensajesConv.forEach((mensaje, index) => {
             const fechaMensaje = dayjs(mensaje.DATE.DATE + ' ' + mensaje.DATE.HORA, 'DD/MM/YYYY HH:mm:ss');
