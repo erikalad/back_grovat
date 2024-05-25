@@ -1,5 +1,7 @@
-const no_me_interesa_variantes = require("./noMeInteresaData").no_me_interesa_variantes;
-const propuesta_palabras_clave = require("./propuestaEnviadaData").propuesta_palabras_clave;
+const no_me_interesa_variantes =
+  require("./noMeInteresaData").no_me_interesa_variantes;
+const propuesta_palabras_clave =
+  require("./propuestaEnviadaData").propuesta_palabras_clave;
 const express = require("express");
 const router = express.Router();
 const dayjs = require("dayjs");
@@ -38,7 +40,7 @@ const palabrasClaveReunion = [
   "media hora",
   "30 minutos",
   "una hora",
-  "60 minutos"
+  "60 minutos",
 ];
 
 router.post("/", (req, res) => {
