@@ -145,6 +145,7 @@ const propuesta_palabras_clave = [
   "organizar una llamada",
   "coordinamos una llamada",
   "agenda",
+  'exploramos',
   "programemos una reunión",
 ];
 
